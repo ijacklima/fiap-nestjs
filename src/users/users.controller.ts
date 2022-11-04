@@ -8,6 +8,7 @@ import {
   Param,
   Req,
 } from '@nestjs/common';
+import { users } from '@prisma/client';
 import { create } from 'domain';
 import { async } from 'rxjs';
 import { CreateUserDTO } from './dto/createUser.dto';
@@ -19,10 +20,10 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
   //criar
   @Post()
-  async createUser(@Body() req: CreateUserDTO): Promise<string> {
+  async createUser(@Body() req: CreateUserDTO): Promise<users> {
     return this.usersService.createUser(req);
   }
-  //listar todos
+  //listar todos localhost:3000/users
   @Get()
   async findAll() {
     return this.usersService.findAll();
